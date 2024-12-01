@@ -51,11 +51,16 @@ public class AudioManager : Singleton<AudioManager>
         SaveVolume(MusicVolumeKey, volume);
     }
 
-    private void SetSFXVolume(float volume)
-    {
-        sfxSources.ForEach(s => s.volume = volume);
-        SaveVolume(SFXVolumeKey, volume);
+     private void SetSFXVolume(float volume)
+     {
+         sfxSources.ForEach(s =>
+         {
+             if (s != null)
+                 s.volume = volume;
+         });
+         SaveVolume(SFXVolumeKey, volume);
     }
+
 
     private void SaveVolume(string key, float volume)
     {
